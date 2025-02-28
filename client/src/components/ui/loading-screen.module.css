@@ -1,0 +1,76 @@
+.loadingScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  overflow: hidden;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-radial-gradient(#000 0 0.0001%, #fff .0002% .0003%, #000 .0004% .002%),
+    repeating-conic-gradient(#000 0 0.0001%, #fff .0002% .0003%, #000 .0004% .002%);
+  opacity: 0.3;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: noise 0.05s infinite;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0px,
+    rgba(255, 255, 255, 0.2) 1px,
+    rgba(255, 255, 255, 0) 2px,
+    rgba(255, 255, 255, 0.1) 3px
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: scanlines 10s linear infinite;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 
+    2px 2px rgba(255, 0, 255, 0.5),
+    -2px -2px rgba(0, 255, 255, 0.5);
+  animation: textGlitch 0.5s infinite;
+}
+
+@keyframes noise {
+  0%, 100% { transform: translate(0); filter: brightness(1); }
+  10% { transform: translate(-1%, -1%); filter: brightness(1.2); }
+  20% { transform: translate(1%, 1%); filter: brightness(0.9); }
+  30% { transform: translate(-2%, 2%); filter: brightness(1.1); }
+  40% { transform: translate(2%, -2%); filter: brightness(0.8); }
+  50% { transform: translate(-1%, 1%); filter: brightness(1.2); }
+  60% { transform: translate(1%, -1%); filter: brightness(0.9); }
+  70% { transform: translate(-2%, -2%); filter: brightness(1.1); }
+  80% { transform: translate(2%, 2%); filter: brightness(0.8); }
+  90% { transform: translate(-1%, -2%); filter: brightness(1.2); }
+}
+
+@keyframes scanlines {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+@keyframes textGlitch {
+  0%, 100% { transform: translate(-50%, -50%); }
+  25% { transform: translate(-51%, -49%); }
+  50% { transform: translate(-49%, -51%); }
+  75% { transform: translate(-50%, -50%); }
+}
